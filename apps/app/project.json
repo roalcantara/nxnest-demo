@@ -5,6 +5,33 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "swc",
+        "swcrc": ".swcrc",
+        "outputPath": "dist/nxnest-demo",
+        "main": "apps/app/src/main.ts",
+        "tsConfig": "apps/app/tsconfig.app.json",
+        "assets": [
+          "src/assets"
+        ],
+        "isolatedConfig": true
+      },
+      "configurations": {
+        "development": {
+          "swcrc": ".swcrc"
+        },
+        "production": {
+          "swcrc": ".swcrc"
+        }
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
