@@ -1,25 +1,33 @@
-let jestConfigObject = {
+module.exports = {
   displayName: 'app',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
-  },
-  moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/app'
-}
-
-if (process.env.NODE_ENV === 'CI' || process.env.CI === 'true') {
-  jestConfigObject.transform = {
     '^.+\\.[tj]s$': [
-      'ts-jest',
+      '@swc/jest',
       {
-        tsconfig: '<rootDir>/tsconfig.spec.json',
-        isolatedModules: true,
-        diagnostics: false
+        sourceMaps: true,
+        module: {
+          type: 'commonjs',
+          strict: true,
+          strictMode: true
+        },
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            decorators: true,
+            dynamicImport: true
+          },
+          transform: {
+            legacyDecorator: true,
+            decoratorMetadata: true
+          },
+          target: 'es2021'
+        },
+        minify: false
       }
     ]
-  }
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  coverageDirectory: '../../coverage/apps/app'
 }
-
-module.exports = jestConfigObject
