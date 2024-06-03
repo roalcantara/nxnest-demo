@@ -20,6 +20,9 @@
         "*.ts",
         "*.tsx"
       ],
+      "parserOptions": {
+        "project": "apps/app/tsconfig.*?.json"
+      },
       "rules": {}
     },
     {
