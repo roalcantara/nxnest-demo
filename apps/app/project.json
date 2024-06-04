@@ -46,6 +46,17 @@
           "buildTarget": "app:build:production"
         }
       }
+    },
+    "biome-lint": {
+      "executor": "@gitopslovers/nx-biome:biome-lint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/app/**/*.ts"
+        ]
+      }
     }
   }
 }
